@@ -1,0 +1,3 @@
+objs/nginx -p ./ -s stop
+ldd objs/nginx
+

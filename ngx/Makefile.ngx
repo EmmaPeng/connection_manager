@@ -1,0 +1,696 @@
+
+CC =	gcc
+CFLAGS =  -pipe  -O -W -Wall -Wpointer-arith -Wno-unused-parameter  -g   -DNDK_SET_VAR -Wno-unused-function -Wno-missing-field-initializers -D_POSIX_C_SOURCE=200112L --std=c99 -Ingx -DNDK_SET_VAR
+CPP =	gcc -E
+LINK =	$(CC) -rdynamic
+
+
+ALL_INCS = -I ngx/core \
+	-I ngx/event \
+	-I ngx/event/modules \
+	-I ngx/os/unix \
+	-I ngx/proc \
+	-I /home/im/third_party/yajl/include \
+	-I /home/im/third_party/pcre/include \
+	-I objs \
+	-I ngx/http \
+	-I ngx/http/modules \
+	-I ngx/mail
+
+
+CORE_DEPS = ngx/core/nginx.h \
+	ngx/core/ngx_config.h \
+	ngx/core/ngx_core.h \
+	ngx/core/ngx_log.h \
+	ngx/core/ngx_palloc.h \
+	ngx/core/ngx_array.h \
+	ngx/core/ngx_list.h \
+	ngx/core/ngx_hash.h \
+	ngx/core/ngx_buf.h \
+	ngx/core/ngx_queue.h \
+	ngx/core/ngx_string.h \
+	ngx/core/ngx_parse.h \
+	ngx/core/ngx_inet.h \
+	ngx/core/ngx_file.h \
+	ngx/core/ngx_crc.h \
+	ngx/core/ngx_crc32.h \
+	ngx/core/ngx_murmurhash.h \
+	ngx/core/ngx_md5.h \
+	ngx/core/ngx_sha1.h \
+	ngx/core/ngx_rbtree.h \
+	ngx/core/ngx_trie.h \
+	ngx/core/ngx_segment_tree.h \
+	ngx/core/ngx_radix_tree.h \
+	ngx/core/ngx_slab.h \
+	ngx/core/ngx_times.h \
+	ngx/core/ngx_shmtx.h \
+	ngx/core/ngx_connection.h \
+	ngx/core/ngx_cycle.h \
+	ngx/core/ngx_conf_file.h \
+	ngx/core/ngx_resolver.h \
+	ngx/core/ngx_open_file_cache.h \
+	ngx/core/ngx_crypt.h \
+	ngx/event/ngx_event.h \
+	ngx/event/ngx_event_timer.h \
+	ngx/event/ngx_event_posted.h \
+	ngx/event/ngx_event_busy_lock.h \
+	ngx/event/ngx_event_connect.h \
+	ngx/event/ngx_event_pipe.h \
+	ngx/os/unix/ngx_time.h \
+	ngx/os/unix/ngx_errno.h \
+	ngx/os/unix/ngx_alloc.h \
+	ngx/os/unix/ngx_files.h \
+	ngx/os/unix/ngx_channel.h \
+	ngx/os/unix/ngx_shmem.h \
+	ngx/os/unix/ngx_process.h \
+	ngx/os/unix/ngx_setaffinity.h \
+	ngx/os/unix/ngx_setproctitle.h \
+	ngx/os/unix/ngx_atomic.h \
+	ngx/os/unix/ngx_gcc_atomic_x86.h \
+	ngx/os/unix/ngx_thread.h \
+	ngx/os/unix/ngx_socket.h \
+	ngx/os/unix/ngx_os.h \
+	ngx/os/unix/ngx_user.h \
+	ngx/os/unix/ngx_pipe.h \
+	ngx/os/unix/ngx_sysinfo.h \
+	ngx/os/unix/ngx_process_cycle.h \
+	ngx/os/unix/ngx_linux_config.h \
+	ngx/os/unix/ngx_linux.h \
+	ngx/os/unix/ngx_syslog.h \
+	ngx/proc/ngx_proc.h \
+	ngx/core/ngx_regex.h 
+
+
+CORE_INCS = -I ngx/core \
+	-I ngx/event \
+	-I ngx/event/modules \
+	-I ngx/os/unix \
+	-I ngx/proc \
+	-I /home/im/third_party/yajl/include \
+	-I /home/im/third_party/pcre/include \
+	-I objs
+
+
+
+
+objs/nginx:	objs/ngx/core/nginx.o \
+	objs/ngx/core/ngx_log.o \
+	objs/ngx/core/ngx_palloc.o \
+	objs/ngx/core/ngx_array.o \
+	objs/ngx/core/ngx_list.o \
+	objs/ngx/core/ngx_hash.o \
+	objs/ngx/core/ngx_buf.o \
+	objs/ngx/core/ngx_queue.o \
+	objs/ngx/core/ngx_output_chain.o \
+	objs/ngx/core/ngx_string.o \
+	objs/ngx/core/ngx_parse.o \
+	objs/ngx/core/ngx_inet.o \
+	objs/ngx/core/ngx_file.o \
+	objs/ngx/core/ngx_crc32.o \
+	objs/ngx/core/ngx_murmurhash.o \
+	objs/ngx/core/ngx_md5.o \
+	objs/ngx/core/ngx_rbtree.o \
+	objs/ngx/core/ngx_trie.o \
+	objs/ngx/core/ngx_segment_tree.o \
+	objs/ngx/core/ngx_radix_tree.o \
+	objs/ngx/core/ngx_slab.o \
+	objs/ngx/core/ngx_times.o \
+	objs/ngx/core/ngx_shmtx.o \
+	objs/ngx/core/ngx_connection.o \
+	objs/ngx/core/ngx_cycle.o \
+	objs/ngx/core/ngx_spinlock.o \
+	objs/ngx/core/ngx_cpuinfo.o \
+	objs/ngx/core/ngx_conf_file.o \
+	objs/ngx/core/ngx_resolver.o \
+	objs/ngx/core/ngx_open_file_cache.o \
+	objs/ngx/core/ngx_crypt.o \
+	objs/ngx/event/ngx_event.o \
+	objs/ngx/event/ngx_event_timer.o \
+	objs/ngx/event/ngx_event_posted.o \
+	objs/ngx/event/ngx_event_busy_lock.o \
+	objs/ngx/event/ngx_event_accept.o \
+	objs/ngx/event/ngx_event_connect.o \
+	objs/ngx/event/ngx_event_pipe.o \
+	objs/ngx/os/unix/ngx_time.o \
+	objs/ngx/os/unix/ngx_errno.o \
+	objs/ngx/os/unix/ngx_alloc.o \
+	objs/ngx/os/unix/ngx_files.o \
+	objs/ngx/os/unix/ngx_socket.o \
+	objs/ngx/os/unix/ngx_recv.o \
+	objs/ngx/os/unix/ngx_readv_chain.o \
+	objs/ngx/os/unix/ngx_udp_recv.o \
+	objs/ngx/os/unix/ngx_send.o \
+	objs/ngx/os/unix/ngx_writev_chain.o \
+	objs/ngx/os/unix/ngx_channel.o \
+	objs/ngx/os/unix/ngx_shmem.o \
+	objs/ngx/os/unix/ngx_process.o \
+	objs/ngx/os/unix/ngx_daemon.o \
+	objs/ngx/os/unix/ngx_setproctitle.o \
+	objs/ngx/os/unix/ngx_posix_init.o \
+	objs/ngx/os/unix/ngx_user.o \
+	objs/ngx/os/unix/ngx_pipe.o \
+	objs/ngx/os/unix/ngx_sysinfo.o \
+	objs/ngx/os/unix/ngx_process_cycle.o \
+	objs/ngx/os/unix/ngx_linux_init.o \
+	objs/ngx/event/modules/ngx_epoll_module.o \
+	objs/ngx/os/unix/ngx_linux_sendfile_chain.o \
+	objs/ngx/os/unix/ngx_syslog.o \
+	objs/ngx/core/ngx_dso_module.o \
+	objs/ngx/proc/ngx_proc.o \
+        objs/ngx/core/ngx_regex.o \
+	objs/ngx_modules.o
+
+	$(LINK) -o objs/nginx \
+	objs/ngx/core/nginx.o \
+	objs/ngx/core/ngx_log.o \
+	objs/ngx/core/ngx_palloc.o \
+	objs/ngx/core/ngx_array.o \
+	objs/ngx/core/ngx_list.o \
+	objs/ngx/core/ngx_hash.o \
+	objs/ngx/core/ngx_buf.o \
+	objs/ngx/core/ngx_queue.o \
+	objs/ngx/core/ngx_output_chain.o \
+	objs/ngx/core/ngx_string.o \
+	objs/ngx/core/ngx_parse.o \
+	objs/ngx/core/ngx_inet.o \
+	objs/ngx/core/ngx_file.o \
+	objs/ngx/core/ngx_crc32.o \
+	objs/ngx/core/ngx_murmurhash.o \
+	objs/ngx/core/ngx_md5.o \
+	objs/ngx/core/ngx_rbtree.o \
+	objs/ngx/core/ngx_trie.o \
+	objs/ngx/core/ngx_segment_tree.o \
+	objs/ngx/core/ngx_radix_tree.o \
+	objs/ngx/core/ngx_slab.o \
+	objs/ngx/core/ngx_times.o \
+	objs/ngx/core/ngx_shmtx.o \
+	objs/ngx/core/ngx_connection.o \
+	objs/ngx/core/ngx_cycle.o \
+	objs/ngx/core/ngx_spinlock.o \
+	objs/ngx/core/ngx_cpuinfo.o \
+	objs/ngx/core/ngx_conf_file.o \
+	objs/ngx/core/ngx_resolver.o \
+	objs/ngx/core/ngx_open_file_cache.o \
+	objs/ngx/core/ngx_crypt.o \
+	objs/ngx/event/ngx_event.o \
+	objs/ngx/event/ngx_event_timer.o \
+	objs/ngx/event/ngx_event_posted.o \
+	objs/ngx/event/ngx_event_busy_lock.o \
+	objs/ngx/event/ngx_event_accept.o \
+	objs/ngx/event/ngx_event_connect.o \
+	objs/ngx/event/ngx_event_pipe.o \
+	objs/ngx/os/unix/ngx_time.o \
+	objs/ngx/os/unix/ngx_errno.o \
+	objs/ngx/os/unix/ngx_alloc.o \
+	objs/ngx/os/unix/ngx_files.o \
+	objs/ngx/os/unix/ngx_socket.o \
+	objs/ngx/os/unix/ngx_recv.o \
+	objs/ngx/os/unix/ngx_readv_chain.o \
+	objs/ngx/os/unix/ngx_udp_recv.o \
+	objs/ngx/os/unix/ngx_send.o \
+	objs/ngx/os/unix/ngx_writev_chain.o \
+	objs/ngx/os/unix/ngx_channel.o \
+	objs/ngx/os/unix/ngx_shmem.o \
+	objs/ngx/os/unix/ngx_process.o \
+	objs/ngx/os/unix/ngx_daemon.o \
+	objs/ngx/os/unix/ngx_setproctitle.o \
+	objs/ngx/os/unix/ngx_posix_init.o \
+	objs/ngx/os/unix/ngx_user.o \
+	objs/ngx/os/unix/ngx_pipe.o \
+	objs/ngx/os/unix/ngx_sysinfo.o \
+	objs/ngx/os/unix/ngx_process_cycle.o \
+	objs/ngx/os/unix/ngx_linux_init.o \
+	objs/ngx/event/modules/ngx_epoll_module.o \
+	objs/ngx/os/unix/ngx_linux_sendfile_chain.o \
+	objs/ngx/os/unix/ngx_syslog.o \
+	objs/ngx/core/ngx_dso_module.o \
+	objs/ngx/proc/ngx_proc.o \
+	objs/ngx/core/ngx_regex.o \
+	objs/ngx_modules.o \
+	-Wl,-E -lpthread -ldl -lcrypt -lm -L/home/im/third_party/yajl/lib -lyajl /home/im/third_party/pcre/lib/libpcre.a -lcrypto -lz
+
+
+objs/ngx_modules.o:     $(CORE_DEPS) \
+	ngx/ngx_modules.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx_modules.o \
+		ngx/ngx_modules.c
+
+
+objs/ngx/core/nginx.o:	$(CORE_DEPS) \
+	ngx/core/nginx.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/nginx.o \
+		ngx/core/nginx.c
+
+
+objs/ngx/core/ngx_log.o:	$(CORE_DEPS) \
+	ngx/core/ngx_log.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_log.o \
+		ngx/core/ngx_log.c
+
+
+objs/ngx/core/ngx_palloc.o:	$(CORE_DEPS) \
+	ngx/core/ngx_palloc.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_palloc.o \
+		ngx/core/ngx_palloc.c
+
+
+objs/ngx/core/ngx_array.o:	$(CORE_DEPS) \
+	ngx/core/ngx_array.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_array.o \
+		ngx/core/ngx_array.c
+
+
+objs/ngx/core/ngx_list.o:	$(CORE_DEPS) \
+	ngx/core/ngx_list.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_list.o \
+		ngx/core/ngx_list.c
+
+
+objs/ngx/core/ngx_hash.o:	$(CORE_DEPS) \
+	ngx/core/ngx_hash.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_hash.o \
+		ngx/core/ngx_hash.c
+
+
+objs/ngx/core/ngx_buf.o:	$(CORE_DEPS) \
+	ngx/core/ngx_buf.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_buf.o \
+		ngx/core/ngx_buf.c
+
+
+objs/ngx/core/ngx_queue.o:	$(CORE_DEPS) \
+	ngx/core/ngx_queue.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_queue.o \
+		ngx/core/ngx_queue.c
+
+
+objs/ngx/core/ngx_output_chain.o:	$(CORE_DEPS) \
+	ngx/core/ngx_output_chain.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_output_chain.o \
+		ngx/core/ngx_output_chain.c
+
+
+objs/ngx/core/ngx_string.o:	$(CORE_DEPS) \
+	ngx/core/ngx_string.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_string.o \
+		ngx/core/ngx_string.c
+
+
+objs/ngx/core/ngx_parse.o:	$(CORE_DEPS) \
+	ngx/core/ngx_parse.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_parse.o \
+		ngx/core/ngx_parse.c
+
+
+objs/ngx/core/ngx_inet.o:	$(CORE_DEPS) \
+	ngx/core/ngx_inet.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_inet.o \
+		ngx/core/ngx_inet.c
+
+
+objs/ngx/core/ngx_file.o:	$(CORE_DEPS) \
+	ngx/core/ngx_file.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_file.o \
+		ngx/core/ngx_file.c
+
+
+objs/ngx/core/ngx_crc32.o:	$(CORE_DEPS) \
+	ngx/core/ngx_crc32.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_crc32.o \
+		ngx/core/ngx_crc32.c
+
+
+objs/ngx/core/ngx_murmurhash.o:	$(CORE_DEPS) \
+	ngx/core/ngx_murmurhash.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_murmurhash.o \
+		ngx/core/ngx_murmurhash.c
+
+
+objs/ngx/core/ngx_md5.o:	$(CORE_DEPS) \
+	ngx/core/ngx_md5.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_md5.o \
+		ngx/core/ngx_md5.c
+
+
+objs/ngx/core/ngx_rbtree.o:	$(CORE_DEPS) \
+	ngx/core/ngx_rbtree.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_rbtree.o \
+		ngx/core/ngx_rbtree.c
+
+
+objs/ngx/core/ngx_trie.o:	$(CORE_DEPS) \
+	ngx/core/ngx_trie.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_trie.o \
+		ngx/core/ngx_trie.c
+
+
+objs/ngx/core/ngx_segment_tree.o:	$(CORE_DEPS) \
+	ngx/core/ngx_segment_tree.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_segment_tree.o \
+		ngx/core/ngx_segment_tree.c
+
+
+objs/ngx/core/ngx_radix_tree.o:	$(CORE_DEPS) \
+	ngx/core/ngx_radix_tree.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_radix_tree.o \
+		ngx/core/ngx_radix_tree.c
+
+
+objs/ngx/core/ngx_slab.o:	$(CORE_DEPS) \
+	ngx/core/ngx_slab.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_slab.o \
+		ngx/core/ngx_slab.c
+
+
+objs/ngx/core/ngx_times.o:	$(CORE_DEPS) \
+	ngx/core/ngx_times.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_times.o \
+		ngx/core/ngx_times.c
+
+
+objs/ngx/core/ngx_shmtx.o:	$(CORE_DEPS) \
+	ngx/core/ngx_shmtx.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_shmtx.o \
+		ngx/core/ngx_shmtx.c
+
+
+objs/ngx/core/ngx_connection.o:	$(CORE_DEPS) \
+	ngx/core/ngx_connection.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_connection.o \
+		ngx/core/ngx_connection.c
+
+
+objs/ngx/core/ngx_cycle.o:	$(CORE_DEPS) \
+	ngx/core/ngx_cycle.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_cycle.o \
+		ngx/core/ngx_cycle.c
+
+
+objs/ngx/core/ngx_spinlock.o:	$(CORE_DEPS) \
+	ngx/core/ngx_spinlock.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_spinlock.o \
+		ngx/core/ngx_spinlock.c
+
+
+objs/ngx/core/ngx_cpuinfo.o:	$(CORE_DEPS) \
+	ngx/core/ngx_cpuinfo.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_cpuinfo.o \
+		ngx/core/ngx_cpuinfo.c
+
+
+objs/ngx/core/ngx_conf_file.o:	$(CORE_DEPS) \
+	ngx/core/ngx_conf_file.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_conf_file.o \
+		ngx/core/ngx_conf_file.c
+
+
+objs/ngx/core/ngx_resolver.o:	$(CORE_DEPS) \
+	ngx/core/ngx_resolver.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_resolver.o \
+		ngx/core/ngx_resolver.c
+
+
+objs/ngx/core/ngx_open_file_cache.o:	$(CORE_DEPS) \
+	ngx/core/ngx_open_file_cache.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_open_file_cache.o \
+		ngx/core/ngx_open_file_cache.c
+
+
+objs/ngx/core/ngx_crypt.o:	$(CORE_DEPS) \
+	ngx/core/ngx_crypt.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_crypt.o \
+		ngx/core/ngx_crypt.c
+
+
+objs/ngx/event/ngx_event.o:	$(CORE_DEPS) \
+	ngx/event/ngx_event.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/event/ngx_event.o \
+		ngx/event/ngx_event.c
+
+
+objs/ngx/event/ngx_event_timer.o:	$(CORE_DEPS) \
+	ngx/event/ngx_event_timer.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/event/ngx_event_timer.o \
+		ngx/event/ngx_event_timer.c
+
+
+objs/ngx/event/ngx_event_posted.o:	$(CORE_DEPS) \
+	ngx/event/ngx_event_posted.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/event/ngx_event_posted.o \
+		ngx/event/ngx_event_posted.c
+
+
+objs/ngx/event/ngx_event_busy_lock.o:	$(CORE_DEPS) \
+	ngx/event/ngx_event_busy_lock.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/event/ngx_event_busy_lock.o \
+		ngx/event/ngx_event_busy_lock.c
+
+
+objs/ngx/event/ngx_event_accept.o:	$(CORE_DEPS) \
+	ngx/event/ngx_event_accept.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/event/ngx_event_accept.o \
+		ngx/event/ngx_event_accept.c
+
+
+objs/ngx/event/ngx_event_connect.o:	$(CORE_DEPS) \
+	ngx/event/ngx_event_connect.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/event/ngx_event_connect.o \
+		ngx/event/ngx_event_connect.c
+
+
+objs/ngx/event/ngx_event_pipe.o:	$(CORE_DEPS) \
+	ngx/event/ngx_event_pipe.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/event/ngx_event_pipe.o \
+		ngx/event/ngx_event_pipe.c
+
+
+objs/ngx/os/unix/ngx_time.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_time.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_time.o \
+		ngx/os/unix/ngx_time.c
+
+
+objs/ngx/os/unix/ngx_errno.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_errno.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_errno.o \
+		ngx/os/unix/ngx_errno.c
+
+
+objs/ngx/os/unix/ngx_alloc.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_alloc.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_alloc.o \
+		ngx/os/unix/ngx_alloc.c
+
+
+objs/ngx/os/unix/ngx_files.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_files.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_files.o \
+		ngx/os/unix/ngx_files.c
+
+
+objs/ngx/os/unix/ngx_socket.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_socket.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_socket.o \
+		ngx/os/unix/ngx_socket.c
+
+
+objs/ngx/os/unix/ngx_recv.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_recv.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_recv.o \
+		ngx/os/unix/ngx_recv.c
+
+
+objs/ngx/os/unix/ngx_readv_chain.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_readv_chain.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_readv_chain.o \
+		ngx/os/unix/ngx_readv_chain.c
+
+
+objs/ngx/os/unix/ngx_udp_recv.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_udp_recv.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_udp_recv.o \
+		ngx/os/unix/ngx_udp_recv.c
+
+
+objs/ngx/os/unix/ngx_send.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_send.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_send.o \
+		ngx/os/unix/ngx_send.c
+
+
+objs/ngx/os/unix/ngx_writev_chain.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_writev_chain.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_writev_chain.o \
+		ngx/os/unix/ngx_writev_chain.c
+
+
+objs/ngx/os/unix/ngx_channel.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_channel.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_channel.o \
+		ngx/os/unix/ngx_channel.c
+
+
+objs/ngx/os/unix/ngx_shmem.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_shmem.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_shmem.o \
+		ngx/os/unix/ngx_shmem.c
+
+
+objs/ngx/os/unix/ngx_process.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_process.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_process.o \
+		ngx/os/unix/ngx_process.c
+
+
+objs/ngx/os/unix/ngx_daemon.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_daemon.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_daemon.o \
+		ngx/os/unix/ngx_daemon.c
+
+
+objs/ngx/os/unix/ngx_setproctitle.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_setproctitle.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_setproctitle.o \
+		ngx/os/unix/ngx_setproctitle.c
+
+
+objs/ngx/os/unix/ngx_posix_init.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_posix_init.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_posix_init.o \
+		ngx/os/unix/ngx_posix_init.c
+
+
+objs/ngx/os/unix/ngx_user.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_user.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_user.o \
+		ngx/os/unix/ngx_user.c
+
+
+objs/ngx/os/unix/ngx_pipe.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_pipe.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_pipe.o \
+		ngx/os/unix/ngx_pipe.c
+
+
+objs/ngx/os/unix/ngx_sysinfo.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_sysinfo.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_sysinfo.o \
+		ngx/os/unix/ngx_sysinfo.c
+
+
+objs/ngx/os/unix/ngx_process_cycle.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_process_cycle.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_process_cycle.o \
+		ngx/os/unix/ngx_process_cycle.c
+
+
+objs/ngx/os/unix/ngx_linux_init.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_linux_init.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_linux_init.o \
+		ngx/os/unix/ngx_linux_init.c
+
+
+objs/ngx/event/modules/ngx_epoll_module.o:	$(CORE_DEPS) \
+	ngx/event/modules/ngx_epoll_module.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/event/modules/ngx_epoll_module.o \
+		ngx/event/modules/ngx_epoll_module.c
+
+
+objs/ngx/os/unix/ngx_linux_sendfile_chain.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_linux_sendfile_chain.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_linux_sendfile_chain.o \
+		ngx/os/unix/ngx_linux_sendfile_chain.c
+
+
+objs/ngx/os/unix/ngx_syslog.o:	$(CORE_DEPS) \
+	ngx/os/unix/ngx_syslog.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/os/unix/ngx_syslog.o \
+		ngx/os/unix/ngx_syslog.c
+
+
+objs/ngx/core/ngx_dso_module.o:	$(CORE_DEPS) \
+	ngx/core/ngx_dso_module.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_dso_module.o \
+		ngx/core/ngx_dso_module.c
+
+
+objs/ngx/proc/ngx_proc.o:	$(CORE_DEPS) \
+	ngx/proc/ngx_proc.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/proc/ngx_proc.o \
+		ngx/proc/ngx_proc.c
+
+
+objs/ngx/core/ngx_regex.o:	$(CORE_DEPS) \
+	ngx/core/ngx_regex.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/ngx/core/ngx_regex.o \
+		ngx/core/ngx_regex.c
+
+
+clean:	
+	find . -name "*.o" |xargs rm -rf

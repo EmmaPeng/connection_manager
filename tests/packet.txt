@@ -1,0 +1,17 @@
+  <iq type='set' to='etop.com' from='cmsit1/ConnectionManager-2-Connection Worker - 1' id='215-5'><session xmlns='http://jabber.org/protocol/connectionmanager' id='cmsit1ab9b0111'><create><host name='10.23.22.18' address='10.23.22.18'/></create></session></iq>
+
+<route to='etop.com' from='cmsit1/ConnectionManager-2-Connection Worker - 1' streamid='cmsit1ab9b0111'><auth mechanism="AASAUTH" xmlns="urn:ietf:params:xml:ns:xmpp-sasl">YTFlYzdlYjAtNjU0Mi00NDQ3LWJlNWMtMDNlNDcyNWY0NGM0</auth></route>
+<route to='etop.com' from='cmsit1/ConnectionManager-2-Connection Worker - 1' streamid='cmsit1ab9b0111'><presence id="J00Fa-34" to="111223@conference.etop.com/6001738977"><x xmlns="http://jabber.org/protocol/muc"/></presence></route>
+
+<iq type="result" id="215-5" from="etop.com" to="cmsit1/ConnectionManager-2-Connection Worker - 1"><session xmlns="http://jabber.org/protocol/connectionmanager" id="cmsit1ab9b0111"><create><host name="10.23.22.18" address="10.23.22.18"/></create></session></iq>
+
+<route streamid="cmsit1ab9b0111" to="cmsit1/ConnectionManager-2-Connection Worker - 1" from="etop.com"><presence id="J00Fa-34" to="6001397634@etop.com/easier" type="receipt" sendDate="1395816976413"/></route>
+<route to='etop.com' from='cmsit1/ConnectionManager-2-Connection Worker - 1' streamid='cmsit1ab9b0111'><message id="5YUme-47" from="111223@conference.etop.com/6001738977"  to="111223@conference.etop.com"><x xmlns="http://jabber.org/protocol/muc#user"><invite to="6000059759@etop.com"><reason>missing</reason></invite><invite to="6000608066@etop.com"><reason>please add...</reason></invite><invite to="6000059859@etop.com"><reason>meeting...</reason></invite></x></message></route>
+<route streamid="cmsit1ab9b0111" to="cmsit1/ConnectionManager-2-Connection Worker - 1" from="etop.com"><message id="5YUme-47" to="6001397634@etop.com/easier" type="receipt" sendDate="1395816976635"/></route>
+<route to='etop.com' from='cmsit1/ConnectionManager-2-Connection Worker - 1' streamid='cmsit1ab9b0111'><iq id="5krX2-21" to="conference.etop.com" type="get"><query xmlns="jabber:iq:load:rooms" /></iq></route>
+<iq type='set' to='etop.com' from='cmsit1/ConnectionManager-2-Connection Worker - 1' id='976-6'><session xmlns='http://jabber.org/protocol/connectionmanager' id='cmsit1ab9b0111'><close/></session></iq>
+<iq type='set' to='etop.com' from='cmsit1/ConnectionManager-2-Connection Worker - 1' id='618-7'><session xmlns='http://jabber.org/protocol/connectionmanager' id='cmsit1ab9b0111'>
+<failed><message id="5YUme-47" to="6001397634@etop.com/easier" type="receipt" sendDate="1395816976635"/></failed></session></iq>
+<iq type='set' to='etop.com' from='cmsit1/ConnectionManager-2-Connection Worker - 1' id='940-8'><session xmlns='http://jabber.org/protocol/connectionmanager' id='cmsit1ab9b0111'><failed><message type="groupchat" id="5YUme-47" to="6001397634@etop.com/easier" from="111223@conference.etop.com/6001397634"><x xmlns="http://jabber.org/protocol/muc#user"><status code="100"/></x></message></failed></session></iq> 
+ 
+<iq type="result" id="576-9" from="etop.com" to="cmsit1/ConnectionManager-5-Connection Worker - 1"><session xmlns="http://jabber.org/protocol/connectionmanager" id="cmsit1679d49c0"><create><host name="10.23.22.18" address="10.23.22.18"/></create></session></iq> 

@@ -1,0 +1,10 @@
+#echo "alias .gdb='gdb -x gdb.init'" >> .bashrc
+
+file objs/nginx
+break ngx_tcp_generic_proxy_module.c:ngx_xmpp_upstream_handler
+break ngx_tcp_generic_proxy_module.c:ngx_xmpp_proxy_handler
+break ngx_tcp_upstream.c:ngx_tcp_upstream_connect
+break ngx_xmpp_connection_pool.c:ngx_tcp_connection_pool_init
+set follow-fork-mode child
+r -p .
+

@@ -1,0 +1,11 @@
+TARGET_HOST=10.211.55.3
+#TARGET_HOST=10.23.22.87
+CUR_FILE=$1
+FILE_LEN=`echo $1|awk '{print length($0)}'`
+PWD_LEN=`echo $PWD|awk '{print length($0)}'`
+FILE_PATH=${CUR_FILE:37:FILE_LEN}
+echo "scp $FILE_PATH im@$TARGET_HOST:/home/im/cm/$FILE_PATH"
+scp $FILE_PATH im@$TARGET_HOST:/home/im/cm/$FILE_PATH
+echo "scp done."
+#scp exts/nginx_tcp_proxy_module/*.* im@$TARGET_HOST:/home/im/cm/exts/nginx_tcp_proxy_module/
+#scp ngx/core/ngx_hashtable.* im@10.211.55.3:/home/im/cm/ngx/core/

@@ -1,0 +1,157 @@
+<stream:stream xmlns:stream="http://etherx.jabber.org/streams"
+	xmlns="jabber:connectionmanager" from="test/0" id="8fb01f98" version="1.0">
+	<stream:features>
+		<compression xmlns="http://jabber.org/features/compress">
+			<method>zlib</method>
+		</compression>
+	</stream:features>
+	<handshake></handshake>
+	<iq type="set" id="60-2341">
+		<configuration xmlns="http://jabber.org/protocol/connectionmanager">
+			<mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl">
+				<mechanism>AASAUTH</mechanism>
+			</mechanisms>
+			<compression xmlns="http://jabber.org/features/compress">
+				<method>zlib</method>
+			</compression>
+			<auth xmlns="http://jabber.org/features/iq-auth" />
+			<register xmlns="http://jabber.org/features/iq-register" />
+		</configuration>
+	</iq>
+	<iq type="result" id="8" from="etop.com" to="test/0">
+		<session xmlns="http://jabber.org/protocol/connectionmanager"
+			id="8">
+			<create>
+				<host name="127.0.0.1" address="127.0.0.1" />
+			</create>
+		</session>
+	</iq>
+	<route from="etop.com" to="test" streamid="8">
+		<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl" jid="6001397634@etop.com/easier" />
+	</route>
+	<route streamid="8">
+		<presence id="J00Fa-34" to="6001397634@etop.com/easier" type="receipt"
+			sendDate="1395908622571" />
+	</route>
+	<route streamid="8">
+		<message id="5YUme-47" to="6001397634@etop.com/easier" type="receipt"
+			sendDate="1395908624947" />
+		<message id="5YUme-48" to="6001397634@etop.com/easier" type="receipt"
+			sendDate="1395908624947" />
+		<message id="5YUme-49" to="6001397634@etop.com/easier" type="receipt"
+			sendDate="1395908624947" />
+		<message id="5YUme-40" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-41" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-42" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-43" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-44" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-45" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-46" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-47" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-30" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-31" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-32" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-33" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-34" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-35" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-36" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-37" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-38" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-39" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-23" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-21" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-322" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-323" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-324" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-325" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-326" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-327" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-328" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-329" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-13" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-123" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-133" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-143" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-153" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-163" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-173" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-183" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-3" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-193" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-103" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-983" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-973" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-963" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-953" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-943" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-933" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-873" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-883" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-893" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-813" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-823" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-833" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-843" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-853" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-863" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-873" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-883" to="6001397634@etop.com/easier" type="receipt" sendDate="139590862493" >
+		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+		</message>
+
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<message type="groupchat" id="5YUme-47" to="6001397634@etop.com/easier"
+			from="111223@conference.etop.com/6001397634">
+			<x xmlns="http://jabber.org/protocol/muc#user">
+				<status code="100" />
+			</x>
+		</message>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="5krX2-21" from="conference.etop.com" to="6001397634@etop.com/easier">
+			<query xmlns="jabber:iq:load:rooms">
+				<item jid="780901047@conference.etop.com" name="YWFhYQ==" />
+				<item jid="1073642875@conference.etop.com" name="5a6d6LSd5a6d6LSd5a6d6LSd" />
+				<item jid="1064099824@conference.etop.com" name="" />
+				<item jid="1624340559@conference.etop.com" name="" />
+				<item jid="1159694432@conference.etop.com" name="" />
+				<item jid="317508853@conference.etop.com" name="" />
+				<item jid="787187902@conference.etop.com" name="" />
+				<item jid="250053713@conference.etop.com" name="" />
+				<item jid="1379108762@conference.etop.com" name="" >aaa</item>
+				<item jid="893672822@conference.etop.com" name="" >bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</item>
+				<item jid="1773710281@conference.etop.com" name="6K6o6K6657uEMQ==" >cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc</item>
+				<item jid="1665276827@conference.etop.com" name="6K6o6K6657uEMw==" />
+				<item jid="60017305881395135361961@conference.etop.com" name="" />
+				<item jid="1341339138@conference.etop.com" name="5ZOI5ZOI5ZOI5ZOI5ZOI" />
+				<item jid="1820297081@conference.etop.com" name="" />
+				<item jid="855351753@conference.etop.com" name="56a757q/5raI5oGv5rWL6K+V" />
+				<item jid="1476348459@conference.etop.com" name="" />
+				<item jid="2025854241@conference.etop.com" name="" />
+				<item jid="60017305881395388090570@conference.etop.com" name="" />
+				<item jid="283048115@conference.etop.com" name="MQ==" />
+				<item jid="60017305881395662003731@conference.etop.com" name="6L+Z5Liq57uE5L+d55WZ" />
+				<item jid="1937771586@conference.etop.com" name="" />
+				<item jid="1308843717@conference.etop.com" name="Mw==" />
+				<item jid="1473378031@conference.etop.com" name="5bCP5YiG6Zif" />
+				<item jid="252034422@conference.etop.com" name="" />
+				<item jid="1543649469@conference.etop.com" name="" />
+				<item jid="1094148180@conference.etop.com" name="" />
+				<item jid="495648692@conference.etop.com" name="" />
+				<item jid="1852007437@conference.etop.com" name="56a757q/5ZWK" />
+				<item jid="360538587@conference.etop.com" name="562J5aSn5aSn5aSn5aSn5ru05ZeS5ru0" />
+				<item jid="1410431485@conference.etop.com" name="NTDkurrlpKfnvqQ=" />
+				<item jid="1968387141@conference.etop.com" name="" />
+				<item jid="90548295@conference.etop.com" name="aGhoaOa7tOWXkua7tA==" />
+				<item jid="111223@conference.etop.com" name="" />
+				<item jid="667710794@conference.etop.com" name="ZGRkZGRk" />
+				<item jid="1712356579@conference.etop.com" name="5Y+N5Y+N5aSN5aSN" />
+			</query>
+		</iq>
+	</route>
+</stream:stream>
