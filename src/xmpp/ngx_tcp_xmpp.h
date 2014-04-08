@@ -41,6 +41,5 @@ extern ngx_module_t  ngx_xmpp_proxy_module;
 
 #define XMPP_STREAM_ID_LEN	30
 #define XMPP_MAX_CHN_LEN 30
-<jid>test0@etop.com/spark</jid></bind></iq></route>
 
 #endif /* _NGX_TCP_SSL_H_INCLUDED_ */

@@ -8,7 +8,7 @@ TARGET=objs/nginx
 DEFINES += -DCC_KEYBOARD_SUPPORT
 
 SOURCES =  $(shell find ngx -regex '.*\.cpp\|.*\.c')	\
-	$(shell find exts -regex '.*\.cpp\|.*\.c')
+	$(shell find src -regex '.*\.cpp\|.*\.c')
 
 SHAREDLIBS = -Wl,-E -lpthread -ldl -lcrypt -lm  -lcrypto -lz
 DEP_LIBS = $(THIRD_PARTY_HOME)/yajl/lib/libyajl.so
@@ -19,10 +19,10 @@ include $(NGX_ROOT)/nginx.mk
 INCLUDES +=	-I objs \
 	-I $(THIRD_PARTY_HOME)/yajl/include \
 	-I $(THIRD_PARTY_HOME)/pcre/include \
-	-I exts/xmpp/modules \
-        -I exts/xmpp \
-	-I exts/xmpp/parsers \
-        -I exts
+	-I src/xmpp/modules \
+        -I src/xmpp \
+	-I src/xmpp/parsers \
+        -I src
 
 
 STATICLIBS += \
