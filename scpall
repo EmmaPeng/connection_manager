@@ -1,5 +1,4 @@
 TARGET_HOST=10.211.55.3
 #TARGET_HOST=10.23.22.87
-scp exts/xmpp/modules/*.* im@$TARGET_HOST:/home/im/cm/exts/xmpp/modules/
 scp exts/xmpp/*.* im@$TARGET_HOST:/home/im/cm/exts/xmpp/
 #scp ngx/core/ngx_hashtable.* im@10.211.55.3:/home/im/cm/ngx/core/

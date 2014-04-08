@@ -184,11 +184,7 @@ void md5(){
 	printf("rc: %d streamid: \"%s\" encrypted: \"%s\" \n",
 	rc, xml_streamid.data, encrypted.data);
 }
-//mutex lock_;
-int main(int argc, char* argv[])
-{
-	cycle = init_nginx();
-	
+int test(){
 	ngx_str_t xml_streamid;
 	ngx_str_t encrypted;
 	ngx_str_t 	key;
@@ -208,6 +204,13 @@ int main(int argc, char* argv[])
 	
 	printf("rc: %d streamid: \"%s\" encrypted: \"%s\" \n",
 		   rc, xml_streamid.data, encrypted.data);
+}
+//mutex lock_;
+int main(int argc, char* argv[])
+{
+	cycle = init_nginx();
+	
+	
 	return 0;
 }
 

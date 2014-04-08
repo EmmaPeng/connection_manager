@@ -17,6 +17,9 @@ SOURCES =  $(shell find $(NGX_ROOT) $(FILTE_FILES) -regex '.*\.cpp\|.*\.c')	\
 ifdef s
 TARGET=objs/s
 SOURCES+= ./server.c
+elif x
+TARGET=objs/c
+SOURCES+= ./xmlparse.c
 else
 TARGET=objs/c
 SOURCES+= ./client.c
@@ -65,3 +68,6 @@ $(OBJ_DIR)/%.o: %.c $(CORE_MAKEFILE_LIST)
 
 s: 
 	make s=1
+
+s: 
+	make x=1

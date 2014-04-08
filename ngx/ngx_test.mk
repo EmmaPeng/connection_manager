@@ -27,6 +27,7 @@ INCLUDES += -I $(NGX_ROOT) \
 	-I $(NGX_ROOT)/os/unix \
 	-I $(NGX_ROOT)/proc	\
 	-I $(NGX_ROOT)/http \
+	-I $(NGX_ROOT)/tcp \
 	-I $(NGX_ROOT)/mail
 
 LBITS := $(shell getconf LONG_BIT)

@@ -27,6 +27,7 @@ INCLUDES += -I ngx \
 	-I ngx/os/unix \
 	-I ngx/proc \
 	-I ngx/http \
+	-I ngx/tcp \
 	-I ngx/mail
 
 LBITS := $(shell getconf LONG_BIT)

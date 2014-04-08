@@ -31,9 +31,6 @@
 #include <ngx_config.h>
 #include <ngx_core.h>
 #include <expat.h>
-#include <test_socket.h>
-#include <packet.h>
-#include <test_epoll.h>
 
 
 #define MAXLINE 5

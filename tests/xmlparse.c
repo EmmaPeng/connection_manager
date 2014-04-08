@@ -30,10 +30,17 @@ ngx_cycle_t *cycle;
 ngx_cycle_t *init_nginx();
 int init_hand(test_connection_t *c){return 0;}
 
-int xml_pre_offset;
-int xml_pre_index;
-XML_Parser parser;
-int isroute;
+typedef struct{
+	//int xml_pre_offset;
+	int xml_pre_index;
+	int depth;
+	int isroute;
+	XML_Parser parser;
+	ngx_buf_t  *wbuffer;
+	ngx_pool_t *pool;
+}parse_ctx_t;
+
+
 /*
 void *malloc_fcn(size_t size);
 void *realloc_fcn(void *ptr, size_t size);
@@ -50,36 +57,40 @@ static void XMLCALL
 startElement(void *userData, const char *name, const char **atts)
 {
   int i;
-  int *depthPtr = (int *)userData;
+  ngx_buf_t *b;
+  parse_ctx_t *ctx = (parse_ctx_t*)userData;
+  b = ctx->wbuffer;
   /*
   for (i = 0; i < *depthPtr; i++)
     putchar('\t');
   puts(name);
   */
-  if(*depthPtr == 1){
+  if(ctx->depth == 1){
 	  if(memcmp("route",name,5) == 0){
-		  isroute=1;
-		  printf("%s\n","<route__ext>");
-		  xml_pre_index=0;
+		  int 	offset,size;
+		  ctx->isroute=1;
+		  //printf("%s\n","<route__ext>");
+		  ctx->xml_pre_index=0;
+		  char *str=XML_GetInputContext(ctx->parser, &offset, &size);
+		  //ctx->xml_pre_offset=offset;
+		  
+		  
 	  }else{
-		isroute=0;
+		ctx->isroute=0;
 	  }
-  }else if(*depthPtr == 2){
-	  if(isroute == 1){
-		  if(xml_pre_index ==0){
-			xml_pre_index = XML_GetCurrentByteIndex(parser);
-			*depthPtr += 1;
-			return;
-		  }
+  }else if(ctx->depth >= 2){
+	  if(ctx->isroute == 1){
 		  int 	offset,size,index;
-		  index = XML_GetCurrentByteIndex(parser);
-		  char *str=XML_GetInputContext(parser, &offset, &size);
-		  size = index - xml_pre_index;
-		  char tmp[size+1];
-		  memcpy(tmp,str+(offset-size),size);
-		  tmp[size] = '\0';
-		  printf("x. %s",tmp);
-		  xml_pre_index = index;
+		  index = XML_GetCurrentByteIndex(ctx->parser);
+		  if(ctx->xml_pre_index >0){
+			  char *str=XML_GetInputContext(ctx->parser, &offset, &size);
+			  size = index - ctx->xml_pre_index;
+
+			  ngx_copy(b->last, str+(offset-size),size);
+			  b->last += size;
+		  }
+		  ctx->xml_pre_index = index;
+		  //ctx->xml_pre_offset=offset;
 		  //size=offset - ctx->xml_pre_offset;
 		  // printf("offset: %d, ctx->xml_pre_offset: %d,index: %d, strlen(el): %s, size: %d, data:\n",offset , xml_pre_offset,index,name,size);
 		  /*
@@ -91,111 +102,110 @@ startElement(void *userData, const char *name, const char **atts)
 		  }
 		  */
 	  }else
-	  xml_pre_index = XML_GetCurrentByteIndex(parser);
-  }else if(*depthPtr > 2){
-	  if(isroute == 1){
-		  int 	offset,size,index;
-		  index = XML_GetCurrentByteIndex(parser);
-		  char *str=XML_GetInputContext(parser, &offset, &size);
-		  size = index - xml_pre_index;
-		 char tmp[size+1];
-		 memcpy(tmp,str+(offset-size),size);
-		 tmp[size] = '\0';
-		 printf(", %s",tmp);
-		  xml_pre_index = index;
-		  //size=offset - ctx->xml_pre_offset;
-		 // printf("offset: %d, ctx->xml_pre_offset: %d,index: %d, strlen(el): %s, size: %d, data:\n",offset , xml_pre_offset,index,name,size);
-		  /*
-		  size = index - xml_pre_offset;
-		  if(size > 1024){
-			  str[size]='\0';
-			  printf("%s",str+ xml_pre_offset);
-			  xml_pre_offset=index;
-		  }
-	*/
-	  }
+	  ctx->xml_pre_index = XML_GetCurrentByteIndex(ctx->parser);
   }
-  *depthPtr += 1;
+  ctx->depth += 1;
 }
 
 static void XMLCALL
 endElement(void *userData, const char *name)
 {
-  int *depthPtr = (int *)userData;
-  *depthPtr -= 1;
-  if(*depthPtr == 1){
-	  if(isroute == 1){
+	ngx_buf_t *b;
+	parse_ctx_t *ctx = (parse_ctx_t*)userData;
+	b = ctx->wbuffer;
+  ctx->depth -= 1;
+  if(ctx->depth == 1){
+	  if(ctx->isroute == 1){
 		  int 	offset,size,index;
-		  index = XML_GetCurrentByteIndex(parser);
-		  char *str=XML_GetInputContext(parser, &offset, &size);
-		  size = index - xml_pre_index;
-		  char tmp[size+1];
-		  memcpy(tmp,str+(offset-size),size);
-		  tmp[size] = '\0';
-		  printf("$end$. %s $end$",tmp);
-		  xml_pre_index = index;
+		  index = XML_GetCurrentByteIndex(ctx->parser);
+		  char *str=XML_GetInputContext(ctx->parser, &offset, &size);
+		  size = index - ctx->xml_pre_index;
 		  
+		  ngx_copy(b->last, str+(offset-size),size);
+		  b->last[size] = '\0';
+		  b->last += size;
+		  
+		  printf(" offset=%s\n",str+offset);
+		  //printf("pre index=%d, index=%d, pre offset=%d, offset=%d, size=%d, str=%s\n",ctx->xml_pre_index,ctx->xml_pre_offset,index,offset,size,str);
+		  printf("************** \n%s\n************** \n",b->pos);
+		  b->last = b->pos = b->start;
+		  
+		  ctx->xml_pre_index = index;
+		  //ctx->xml_pre_offset=offset;
 	  }
 	  //XML_ParserReset(parser,0);
-  }else if(*depthPtr == 2){
-	  if(isroute == 1){
+  }else if(ctx->depth >= 2){
+	  if(ctx->isroute == 1){
 		  int 	offset,size,index;
-		  index = XML_GetCurrentByteIndex(parser);
-		  char *str=XML_GetInputContext(parser, &offset, &size);
-		  size = index - xml_pre_index;
-		  char tmp[size+1];
-		  memcpy(tmp,str+(offset-size),size);
-		  tmp[size] = '\0';
-		  printf("$2end$. %s $2end$",tmp);
-		  xml_pre_index = index;
-		  
+		  index = XML_GetCurrentByteIndex(ctx->parser);
+		  char *str=XML_GetInputContext(ctx->parser, &offset, &size);
+		  size = index - ctx->xml_pre_index;
+		  ngx_copy(b->last, str+(offset-size),size);
+		  b->last += size;
+		  //printf(" offset=%s\n",str+offset);
+		  ctx->xml_pre_index = index;
+		  //ctx->xml_pre_offset=offset;
 	  }
 	  //XML_ParserReset(parser,0);
   }
 }
 
+int readfile(char **buffer,int* blen){
+	FILE *fp;
+	fp = fopen ( "./demo.xml" , "rb" );
+	if (fp == NULL) {fputs ("File error\n",stderr); exit (1);}
+	
+	fseek (fp , 0 , SEEK_END);
+	int buffer_len = ftell (fp);
+	rewind (fp);
+
+	// allocate memory to contain the whole file:
+	*buffer = (char*) malloc (sizeof(char)*buffer_len);
+	if (*buffer == NULL) {fputs ("Memory error",stderr); exit (2);}
+	
+	int result = fread (*buffer,1,buffer_len,fp);
+	if (result != buffer_len) {fputs ("Reading error",stderr); exit (3);}
+	
+	printf("BUFSIZ: %d, filesize: %d,\n",BUFSIZ,buffer_len);
+	fclose (fp);
+	*blen = buffer_len;
+	return 0;
+}
 int
 main(int argc, char *argv[])
 {
-  char buf[BUFSIZ];
-  parser = XML_ParserCreate(NULL);
+  char *buffer;
+  int buffer_len;
   int done,i=0,len;
-  int depth = 0;
-  XML_SetUserData(parser, &depth);
-  XML_SetElementHandler(parser, startElement, endElement);
+  parse_ctx_t ctx;
+  cycle = init_nginx();
+  ctx.pool = cycle->pool;
   
-  FILE *fp;
-  fp = fopen ( "./demo.xml" , "rb" );
-  if (fp == NULL) {fputs ("File error\n",stderr); exit (1);}
+  ctx.parser = XML_ParserCreate(NULL);
+  ctx.depth = 0;
+  XML_SetUserData(ctx.parser, &ctx);
+  XML_SetElementHandler(ctx.parser, startElement, endElement);
   
-  fseek (fp , 0 , SEEK_END);
-  int lSize = ftell (fp);
-  rewind (fp);
+  ctx.wbuffer = ngx_create_temp_buf(ctx.pool, 40960);
+  
+  readfile(&buffer,&buffer_len);
 
-  // allocate memory to contain the whole file:
-  char *buffer = (char*) malloc (sizeof(char)*lSize);
-  if (buffer == NULL) {fputs ("Memory error",stderr); exit (2);}
-  
-  int result = fread (buffer,1,lSize,fp);
-  if (result != lSize) {fputs ("Reading error",stderr); exit (3);}
-  
-  printf("BUFSIZ: %d, filesize: %d,\n",BUFSIZ,lSize);
   len = 100;
   do {
-	if(i+len>=lSize)len=lSize-i;
-    if (XML_Parse(parser, buffer+i, len, 0) == XML_STATUS_ERROR) {
+	if(i+len>=buffer_len)len=buffer_len-i;
+    if (XML_Parse(ctx.parser, buffer+i, len, 0) == XML_STATUS_ERROR) {
       fprintf(stderr,
               "%s at line %" XML_FMT_INT_MOD "u\n",
-              XML_ErrorString(XML_GetErrorCode(parser)),
-              XML_GetCurrentLineNumber(parser));
+              XML_ErrorString(XML_GetErrorCode(ctx.parser)),
+              XML_GetCurrentLineNumber(ctx.parser));
 	  printf("%s\n",buffer+i);
       return 1;
     }
-	if(i+len>=lSize)break;
+	if(i+len>=buffer_len)break;
 	i+=len;
   } while (1);
-  XML_ParserFree(parser);
-  fclose (fp);
+  XML_ParserFree(ctx.parser);
+  
   free (buffer);
   return 0;
 }

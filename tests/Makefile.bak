@@ -1,69 +1,73 @@
 CURPWD = $(shell pwd)
 
 THIRD_PARTY_HOME=/usr/local/third_party
-NGX_ROOT=$(CURPWD)/../ngx
+NGX_ROOT=/home/im/cm/ngx
+DEBUG=1
 
-CC =	gcc
-CFLAGS =   -W -Wall -Wpointer-arith -Wno-unused-parameter  -g3  -I .  -DNDK_SET_VAR -Wno-unused-function -Wno-missing-field-initializers -D_POSIX_C_SOURCE=200112L --std=c99 -Isrc -DNDK_SET_VAR
-CXXFLAGS +=  -g3 -MMD -Wall -Werror -fPIC
-CPP =	g++ 
-LINK =  g++ -rdynamic
+DEFINES += -DCC_KEYBOARD_SUPPORT
 
-INCLUDES +=     -I objs \
+FILTE_FILES= ! -regex ".*/core/nginx\.c\|.*/ngx_modules\.c"	\
+#	! -regex '.*/ngx_modules.c\|.*/proc/.*\|.*/core/nginx\.c\|.*/ngx_dso_module\.c'	\
+#	! -regex '.*/core/ngx_cycle\.c\|.*/core/ngx_conf_file\.c\|.*/core/ngx_open_file_cache\.c\|.*/core/ngx_file\.c\|'
+	
+
+SOURCES =  $(shell find $(NGX_ROOT) $(FILTE_FILES) -regex '.*\.cpp\|.*\.c')	\
+	$(shell find src -regex '.*\.cpp\|.*\.c')
+
+ifdef s
+TARGET=objs/s
+SOURCES+= ./server.c
+elif x
+TARGET=objs/c
+SOURCES+= ./xmlparse.c
+else
+TARGET=objs/c
+SOURCES+= ./client.c
+endif
+
+SHAREDLIBS = -Wl,-E -lpthread -ldl -lcrypt -lm  -lcrypto -lz
+DEP_LIBS = $(THIRD_PARTY_HOME)/yajl/lib/libyajl.so
+
+include $(NGX_ROOT)/ngx_test.mk
+
+
+INCLUDES +=	-I objs \
 	-I $(THIRD_PARTY_HOME)/yajl/include \
 	-I $(THIRD_PARTY_HOME)/pcre/include \
-	-I exts/nginx_tcp_proxy_module/modules \
-	-I exts/nginx_tcp_proxy_module/parsers \
-	-I exts/nginx_tcp_proxy_module
+	-I ngx \
+	-I src
 
 
 STATICLIBS += \
 	$(THIRD_PARTY_HOME)/pcre/lib/libpcre.a	\
 	$(THIRD_PARTY_HOME)/expat-2.1.0/lib/libexpat.a
 
-c:	objs/client.o	\
-	objs/socket.o
-	
-	$(LINK) -o objs/c \
-	objs/client.o	\
-	objs/socket.o	\
-	-Wl,-E  $(STATICLIBS)
 
-s: objs/server.o	\
-	objs/socket.o
-	
-	$(LINK) -o objs/s \
-	objs/server.o   \
-	objs/socket.o	\
-	-Wl,-E $(STATICLIBS)
+####### Build rules
+$(TARGET): $(OBJECTS) $(STATICLIBS) $(CORE_MAKEFILE_LIST)
+	@mkdir -p $(@D)
+	@echo "$(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(SHAREDLIBS) $(STATICLIBS) $(LIBS)"
+	$(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(SHAREDLIBS) $(STATICLIBS) $(LIBS)
 
-objs/client.o:	$(CORE_DEPS) \
-	client.c
-	$(CC) -c $(CFLAGS) $(CORE_INCS) \
-		-o objs/client.o \
-		client.c
+####### Compile
+$(OBJ_DIR)/%.o: ../%.cpp $(CORE_MAKEFILE_LIST)
+	@mkdir -p $(@D)
+	@echo "1:$(OBJ_DIR)/%.o: ../%.cpp $(CORE_MAKEFILE_LIST)"
+	@echo "1.1:$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@"
+	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
 
-objs/server.o:	$(CORE_DEPS) \
-	server.c
-	$(CC) -c $(CFLAGS) $(CORE_INCS) \
-		-o objs/server.o \
-		server.c
+$(OBJ_DIR)/%.o: %.cpp $(CORE_MAKEFILE_LIST)
+	@mkdir -p $(@D)
+	@echo "2:$(OBJ_DIR)/%.o: %.cpp $(CORE_MAKEFILE_LIST)"
+	$(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
 
+$(OBJ_DIR)/%.o: %.c $(CORE_MAKEFILE_LIST)
+	@mkdir -p $(@D)
+	@echo "$(LOG_CC)$(CC) $(CCFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@"
+	$(LOG_CC)$(CC) $(CCFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
 
-objs/socket.o:	$(CORE_DEPS) \
-	socket.c
-	$(CC) -c $(CFLAGS) $(CORE_INCS) \
-		-o objs/socket.o \
-		socket.c
+s: 
+	make s=1
 
-
-clean:
-	rm -rf objs/*
-
-rc:
-	./objs/c
-
-rs:
-	nohup ./objs/s 9999 &
-	tail -f nohup.out
-
+s: 
+	make x=1

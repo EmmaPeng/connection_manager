@@ -1,5 +1,5 @@
-<stream:stream xmlns:stream="http://etherx.jabber.org/streams"
-	xmlns="jabber:connectionmanager" from="test/0" id="8fb01f98" version="1.0">
+<stream:stream xmlns:stream="http://etherx.jabber.org/streams" xmlns="jabber:connectionmanager" from="test/0"
+	id="8fb01f98" version="1.0">
 	<stream:features>
 		<compression xmlns="http://jabber.org/features/compress">
 			<method>zlib</method>
@@ -19,8 +19,7 @@
 		</configuration>
 	</iq>
 	<iq type="result" id="8" from="etop.com" to="test/0">
-		<session xmlns="http://jabber.org/protocol/connectionmanager"
-			id="8">
+		<session xmlns="http://jabber.org/protocol/connectionmanager" id="8">
 			<create>
 				<host name="127.0.0.1" address="127.0.0.1" />
 			</create>
@@ -30,16 +29,12 @@
 		<success xmlns="urn:ietf:params:xml:ns:xmpp-sasl" jid="6001397634@etop.com/easier" />
 	</route>
 	<route streamid="8">
-		<presence id="J00Fa-34" to="6001397634@etop.com/easier" type="receipt"
-			sendDate="1395908622571" />
+		<presence id="J00Fa-34" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908622571" />
 	</route>
 	<route streamid="8">
-		<message id="5YUme-47" to="6001397634@etop.com/easier" type="receipt"
-			sendDate="1395908624947" />
-		<message id="5YUme-48" to="6001397634@etop.com/easier" type="receipt"
-			sendDate="1395908624947" />
-		<message id="5YUme-49" to="6001397634@etop.com/easier" type="receipt"
-			sendDate="1395908624947" />
+		<message id="5YUme-47" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-48" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
+		<message id="5YUme-49" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
 		<message id="5YUme-40" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
 		<message id="5YUme-41" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
 		<message id="5YUme-42" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
@@ -95,18 +90,17 @@
 		<message id="5YUme-853" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
 		<message id="5YUme-863" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
 		<message id="5YUme-873" to="6001397634@etop.com/easier" type="receipt" sendDate="1395908624947" />
-		<message id="5YUme-883" to="6001397634@etop.com/easier" type="receipt" sendDate="139590862493" >
-		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-		cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+		<message id="5YUme-883" to="6001397634@etop.com/easier" type="receipt" sendDate="139590862493">
+			cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+			cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+			cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+			cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+			cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 		</message>
 
 	</route>
 	<route streamid="8" from="etop.com" to="test">
-		<message type="groupchat" id="5YUme-47" to="6001397634@etop.com/easier"
-			from="111223@conference.etop.com/6001397634">
+		<message type="groupchat" id="5YUme-47" to="6001397634@etop.com/easier" from="111223@conference.etop.com/6001397634">
 			<x xmlns="http://jabber.org/protocol/muc#user">
 				<status code="100" />
 			</x>
@@ -123,9 +117,12 @@
 				<item jid="317508853@conference.etop.com" name="" />
 				<item jid="787187902@conference.etop.com" name="" />
 				<item jid="250053713@conference.etop.com" name="" />
-				<item jid="1379108762@conference.etop.com" name="" >aaa</item>
-				<item jid="893672822@conference.etop.com" name="" >bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</item>
-				<item jid="1773710281@conference.etop.com" name="6K6o6K6657uEMQ==" >cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc</item>
+				<item jid="1379108762@conference.etop.com" name="">aaa</item>
+				<item jid="893672822@conference.etop.com" name="">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+				</item>
+				<item jid="1773710281@conference.etop.com" name="6K6o6K6657uEMQ==">
+					cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+				</item>
 				<item jid="1665276827@conference.etop.com" name="6K6o6K6657uEMw==" />
 				<item jid="60017305881395135361961@conference.etop.com" name="" />
 				<item jid="1341339138@conference.etop.com" name="5ZOI5ZOI5ZOI5ZOI5ZOI" />
@@ -151,6 +148,228 @@
 				<item jid="111223@conference.etop.com" name="" />
 				<item jid="667710794@conference.etop.com" name="ZGRkZGRk" />
 				<item jid="1712356579@conference.etop.com" name="5Y+N5Y+N5aSN5aSN" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-0" to="etop.com/cm-18ae7706">
+			<bind xmlns="urn:ietf:params:xml:ns:xmpp-bind">
+				<jid>test0@etop.com/spark</jid>
+			</bind>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-1" to="test0@etop.com/spark" />
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-2" to="test0@etop.com/spark">
+			<query xmlns="jabber:iq:roster">
+				<item jid="jiwei@etop.com" name="" subscription="both" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-3" from="etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#items">
+				<item jid="broadcast.etop.com" name="Broadcast service" />
+				<item jid="pubsub.etop.com" name="Publish-Subscribe service" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-4" to="test0@etop.com/spark">
+			<vCard xmlns="vcard-temp" />
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="error" id="oLlNh-5" to="test0@etop.com/spark">
+			<sharedgroup xmlns="http://www.jivesoftware.org/protocol/sharedgroup" />
+			<error code="503" type="cancel">
+				<service-unavailable xmlns="urn:ietf:params:xml:ns:xmpp-stanzas" />
+			</error>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-7" to="test0@etop.com/spark">
+			<query xmlns="jabber:iq:private">
+				<storage xmlns="storage:bookmarks" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-8" from="broadcast.etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#info">
+				<identity category="component" type="generic" name="Broadcast service" />
+				<feature var="http://jabber.org/protocol/disco#info" />
+				<feature var="http://jabber.org/protocol/disco#items" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-9" to="test0@etop.com/spark">
+			<query xmlns="jabber:iq:private">
+				<storage xmlns="storage:bookmarks" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-10" from="pubsub.etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#info">
+				<identity category="pubsub" name="Publish-Subscribe service" type="service" />
+				<feature var="http://jabber.org/protocol/pubsub" />
+				<feature var="http://jabber.org/protocol/pubsub#collections" />
+				<feature var="http://jabber.org/protocol/pubsub#config-node" />
+				<feature var="http://jabber.org/protocol/pubsub#create-and-configure" />
+				<feature var="http://jabber.org/protocol/pubsub#create-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#delete-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#get-pending" />
+				<feature var="http://jabber.org/protocol/pubsub#instant-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#item-ids" />
+				<feature var="http://jabber.org/protocol/pubsub#meta-data" />
+				<feature var="http://jabber.org/protocol/pubsub#modify-affiliations" />
+				<feature var="http://jabber.org/protocol/pubsub#manage-subscriptions" />
+				<feature var="http://jabber.org/protocol/pubsub#multi-subscribe" />
+				<feature var="http://jabber.org/protocol/pubsub#outcast-affiliation" />
+				<feature var="http://jabber.org/protocol/pubsub#persistent-items" />
+				<feature var="http://jabber.org/protocol/pubsub#presence-notifications" />
+				<feature var="http://jabber.org/protocol/pubsub#publish" />
+				<feature var="http://jabber.org/protocol/pubsub#publisher-affiliation" />
+				<feature var="http://jabber.org/protocol/pubsub#purge-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#retract-items" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-affiliations" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-default" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-items" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-subscriptions" />
+				<feature var="http://jabber.org/protocol/pubsub#subscribe" />
+				<feature var="http://jabber.org/protocol/pubsub#subscription-options" />
+				<feature var="http://jabber.org/protocol/pubsub#default_access_model_open" />
+				<feature var="http://jabber.org/protocol/disco#info" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-11" from="etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#items">
+				<item jid="broadcast.etop.com" name="Broadcast service" />
+				<item jid="pubsub.etop.com" name="Publish-Subscribe service" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-12" from="broadcast.etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#info">
+				<identity category="component" type="generic" name="Broadcast service" />
+				<feature var="http://jabber.org/protocol/disco#info" />
+				<feature var="http://jabber.org/protocol/disco#items" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-13" from="pubsub.etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#info">
+				<identity category="pubsub" name="Publish-Subscribe service" type="service" />
+				<feature var="http://jabber.org/protocol/pubsub" />
+				<feature var="http://jabber.org/protocol/pubsub#collections" />
+				<feature var="http://jabber.org/protocol/pubsub#config-node" />
+				<feature var="http://jabber.org/protocol/pubsub#create-and-configure" />
+				<feature var="http://jabber.org/protocol/pubsub#create-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#delete-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#get-pending" />
+				<feature var="http://jabber.org/protocol/pubsub#instant-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#item-ids" />
+				<feature var="http://jabber.org/protocol/pubsub#meta-data" />
+				<feature var="http://jabber.org/protocol/pubsub#modify-affiliations" />
+				<feature var="http://jabber.org/protocol/pubsub#manage-subscriptions" />
+				<feature var="http://jabber.org/protocol/pubsub#multi-subscribe" />
+				<feature var="http://jabber.org/protocol/pubsub#outcast-affiliation" />
+				<feature var="http://jabber.org/protocol/pubsub#persistent-items" />
+				<feature var="http://jabber.org/protocol/pubsub#presence-notifications" />
+				<feature var="http://jabber.org/protocol/pubsub#publish" />
+				<feature var="http://jabber.org/protocol/pubsub#publisher-affiliation" />
+				<feature var="http://jabber.org/protocol/pubsub#purge-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#retract-items" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-affiliations" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-default" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-items" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-subscriptions" />
+				<feature var="http://jabber.org/protocol/pubsub#subscribe" />
+				<feature var="http://jabber.org/protocol/pubsub#subscription-options" />
+				<feature var="http://jabber.org/protocol/pubsub#default_access_model_open" />
+				<feature var="http://jabber.org/protocol/disco#info" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-14" from="etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#items">
+				<item jid="broadcast.etop.com" name="Broadcast service" />
+				<item jid="pubsub.etop.com" name="Publish-Subscribe service" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-15" from="etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#items">
+				<item jid="broadcast.etop.com" name="Broadcast service" />
+				<item jid="pubsub.etop.com" name="Publish-Subscribe service" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-16" from="broadcast.etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#info">
+				<identity category="component" type="generic" name="Broadcast service" />
+				<feature var="http://jabber.org/protocol/disco#info" />
+				<feature var="http://jabber.org/protocol/disco#items" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-17" from="pubsub.etop.com" to="test0@etop.com/spark">
+			<query xmlns="http://jabber.org/protocol/disco#info">
+				<identity category="pubsub" name="Publish-Subscribe service" type="service" />
+				<feature var="http://jabber.org/protocol/pubsub" />
+				<feature var="http://jabber.org/protocol/pubsub#collections" />
+				<feature var="http://jabber.org/protocol/pubsub#config-node" />
+				<feature var="http://jabber.org/protocol/pubsub#create-and-configure" />
+				<feature var="http://jabber.org/protocol/pubsub#create-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#delete-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#get-pending" />
+				<feature var="http://jabber.org/protocol/pubsub#instant-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#item-ids" />
+				<feature var="http://jabber.org/protocol/pubsub#meta-data" />
+				<feature var="http://jabber.org/protocol/pubsub#modify-affiliations" />
+				<feature var="http://jabber.org/protocol/pubsub#manage-subscriptions" />
+				<feature var="http://jabber.org/protocol/pubsub#multi-subscribe" />
+				<feature var="http://jabber.org/protocol/pubsub#outcast-affiliation" />
+				<feature var="http://jabber.org/protocol/pubsub#persistent-items" />
+				<feature var="http://jabber.org/protocol/pubsub#presence-notifications" />
+				<feature var="http://jabber.org/protocol/pubsub#publish" />
+				<feature var="http://jabber.org/protocol/pubsub#publisher-affiliation" />
+				<feature var="http://jabber.org/protocol/pubsub#purge-nodes" />
+				<feature var="http://jabber.org/protocol/pubsub#retract-items" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-affiliations" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-default" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-items" />
+				<feature var="http://jabber.org/protocol/pubsub#retrieve-subscriptions" />
+				<feature var="http://jabber.org/protocol/pubsub#subscribe" />
+				<feature var="http://jabber.org/protocol/pubsub#subscription-options" />
+				<feature var="http://jabber.org/protocol/pubsub#default_access_model_open" />
+				<feature var="http://jabber.org/protocol/disco#info" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-18" to="test0@etop.com/spark">
+			<query xmlns="jabber:iq:private">
+				<gateway-settings xmlns="http://www.jivesoftware.org/spark" />
+			</query>
+		</iq>
+	</route>
+	<route streamid="8" from="etop.com" to="test">
+		<iq type="result" id="oLlNh-19" to="test0@etop.com/spark">
+			<query xmlns="jabber:iq:private">
+				<scratchpad xmlns="scratchpad:tasks" />
 			</query>
 		</iq>
 	</route>
