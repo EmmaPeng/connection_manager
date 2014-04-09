@@ -10,7 +10,7 @@ Openfire Connection Manager 是 Openfire 服务器的扩展，它可以透明的
 
 使用配置
 -------------------
-conf/nginx.conf
+conf/nginx.conf<br />
 	tcp {
 		upstream cluster {
 			# simple round-robin
