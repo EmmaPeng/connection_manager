@@ -19,7 +19,6 @@ include $(NGX_ROOT)/nginx.mk
 INCLUDES +=	-I objs \
 	-I $(THIRD_PARTY_HOME)/yajl/include \
 	-I $(THIRD_PARTY_HOME)/pcre/include \
-	-I src/xmpp/modules \
         -I src/xmpp \
 	-I src/xmpp/parsers \
         -I src

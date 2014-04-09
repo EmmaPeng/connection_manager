@@ -32,7 +32,7 @@ ngx_hashtable_t		*CS_HT;
 
 static ngx_tcp_protocol_t  ngx_tcp_xmpp_protocol = {
 
-    ngx_string("tcp_xmpp"),
+    ngx_string("test_xmpp"),
     { 0, 0, 0, 0 },
     NGX_TCP_GENERIC_PROTOCOL,
     ngx_xmpp_proxy_init_session,
@@ -45,35 +45,35 @@ static ngx_tcp_protocol_t  ngx_tcp_xmpp_protocol = {
 
 static ngx_command_t  ngx_xmpp_proxy_commands[] = {
 
-    { ngx_string("xmpp_pass"),
+    { ngx_string("test_pass"),
       NGX_TCP_MAIN_CONF|NGX_TCP_SRV_CONF|NGX_CONF_TAKE1,
       ngx_xmpp_proxy_pass,
       NGX_TCP_SRV_CONF_OFFSET,
       0,
       NULL },
 
-    { ngx_string("xmpp_buffer"),
+    { ngx_string("test_buffer"),
       NGX_TCP_MAIN_CONF|NGX_TCP_SRV_CONF|NGX_CONF_TAKE1,
       ngx_conf_set_size_slot,
       NGX_TCP_SRV_CONF_OFFSET,
       offsetof(ngx_xmpp_proxy_conf_t, buffer_size),
       NULL },
 
-    { ngx_string("xmpp_connect_timeout"),
+    { ngx_string("test_connect_timeout"),
       NGX_TCP_MAIN_CONF|NGX_TCP_SRV_CONF|NGX_CONF_TAKE1,
       ngx_conf_set_msec_slot,
       NGX_TCP_SRV_CONF_OFFSET,
       offsetof(ngx_xmpp_proxy_conf_t, upstream.connect_timeout),
       NULL },
 
-    { ngx_string("xmpp_read_timeout"),
+    { ngx_string("test_read_timeout"),
       NGX_TCP_MAIN_CONF|NGX_TCP_SRV_CONF|NGX_CONF_TAKE1,
       ngx_conf_set_msec_slot,
       NGX_TCP_SRV_CONF_OFFSET,
       offsetof(ngx_xmpp_proxy_conf_t, upstream.read_timeout),
       NULL },
 
-    { ngx_string("xmpp_send_timeout"),
+    { ngx_string("test_send_timeout"),
       NGX_TCP_MAIN_CONF|NGX_TCP_SRV_CONF|NGX_CONF_TAKE1,
       ngx_conf_set_msec_slot,
       NGX_TCP_SRV_CONF_OFFSET,
@@ -95,7 +95,7 @@ static ngx_tcp_module_t  ngx_xmpp_proxy_module_ctx = {
 };
 
 
-ngx_module_t  ngx_xmpp_proxy_module = {
+ngx_module_t  ngx_test_proxy_module = {
     NGX_MODULE_V1,
     &ngx_xmpp_proxy_module_ctx,             /* module context */
     ngx_xmpp_proxy_commands,                /* module directives */
