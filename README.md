@@ -23,8 +23,8 @@ Openfire Connection Manager 是 Openfire 服务器的扩展，它可以透明的
 	
 		server {
 			listen 15222;				#cm监听端口
-			xmpp_read_timeout 6000;		#client与cm的read_timeout
-			xmpp_send_timeout 6000;		#cm到client的send_timeout
+			xmpp_read_timeout 6000;		#cm -> client的read timeout
+			xmpp_send_timeout 6000;		#cm -> client的write timeout
 			xmpp_buffer 4096;			#client <=> cm 及 cm <=> openfire数据交换buffer
 			xmpp_pass cluster;			#cm转发的路径配置
 		}
