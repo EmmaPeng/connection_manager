@@ -44,6 +44,14 @@ expat(http://www.libexpat.org/)<br />
 运行 make 进行编译<br />
 编译后的目标文件为./objs/nginx<br />
 
+### c.可选，安装ha <br />
+cm在部署时，如果需要主备容灾功能，需要部署heartbeat,heartbeat部署相关的，请参考 <br />
+ http://www.linux-ha.org/wiki/Main_Page<br />
+ http://www.linux-ha.org/wiki/Heartbeat<br />
+ 
 原理篇
 -------------------
 ### Connection Manager的总体结构<br />
+![connection manager structure](docs/structure.png "Structure")
+
+感谢使用connection_manager！
