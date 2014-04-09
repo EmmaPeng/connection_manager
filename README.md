@@ -5,7 +5,7 @@ openfire connection manager module
 
 ![connection manager architecture](docs/architecture.png "Architecture")
 
-Openfire Connection Manager 是 Openfire 服务器的扩展，它可以透明的处理大规模并发 XMPP 客户端对 Openfire 服务器的联接。上图表示 Openfire 服务器配置 Connection Manager 后的系统架构。实现参考了Openfire的Connection Manager模块.
+Openfire Connection Manager 是 Openfire 服务器的扩展，它可以透明的处理大规模并发 XMPP 客户端对 Openfire 服务器的联接。上图表示 Openfire 服务器配置 Connection Manager 后的系统架构。实现参考了Openfire的Connection Manager模块,当前版本尚不支持ssl及zlib压缩。
 
 使用配置
 -------------------
@@ -17,7 +17,7 @@ Openfire Connection Manager 是 Openfire 服务器的扩展，它可以透明的
 			server 10.211.55.3:5262;	#openfire server
 			connections 5;				#cm与openfire server的最大连接数
 			keepalive_timeout 65;		#cm与openfire server keepalive
-			server_name test;			#cm名称
+			server_name test;			#cm名称,唯一
 			check interval=10000 rise=2 fall=5 timeout=30000;	#check openfire server配置
 		}
 	
@@ -30,7 +30,18 @@ Openfire Connection Manager 是 Openfire 服务器的扩展，它可以透明的
 		}
 	}
 
-		
+
+编译安装
+-------------------
+### a.依赖包安装<br />
+需要确保安装了pcre(http://www.pcre.org/),expat(http://www.libexpat.org/)
+
+### b.编译安装<br />
+进入cm目录
+修改Makefile中的PCRE_HOME和EXPAT_HOME值,指向正确的安装路径
+运行 make 进行编译
+编译后的目标文件为./objs/nginx
+
 原理篇
 -------------------
 ### Connection Manager的总体结构<br />

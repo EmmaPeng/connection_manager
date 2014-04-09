@@ -1,6 +1,9 @@
 CURPWD = $(shell pwd)
 
 THIRD_PARTY_HOME=/usr/local/third_party
+PCRE_HOME=$(THIRD_PARTY_HOME)/pcre
+EXPAT_HOME=$(THIRD_PARTY_HOME)/expat-2.1.0
+YAJL_HOME=$(THIRD_PARTY_HOME)/yajl
 NGX_ROOT=$(CURPWD)/ngx
 DEBUG=1
 TARGET=objs/nginx
@@ -11,22 +14,22 @@ SOURCES =  $(shell find ngx -regex '.*\.cpp\|.*\.c')	\
 	$(shell find src -regex '.*\.cpp\|.*\.c')
 
 SHAREDLIBS = -Wl,-E -lpthread -ldl -lcrypt -lm  -lcrypto -lz
-DEP_LIBS = $(THIRD_PARTY_HOME)/yajl/lib/libyajl.so
+DEP_LIBS = $(YAJL_HOME)/lib/libyajl.so
 
 include $(NGX_ROOT)/nginx.mk
 
 
 INCLUDES +=	-I objs \
-	-I $(THIRD_PARTY_HOME)/yajl/include \
-	-I $(THIRD_PARTY_HOME)/pcre/include \
+	-I $(YAJL_HOME)/include \
+	-I $(PCRE_HOME)/include \
         -I src/xmpp \
 	-I src/xmpp/parsers \
         -I src
 
 
 STATICLIBS += \
-	$(THIRD_PARTY_HOME)/pcre/lib/libpcre.a	\
-	$(THIRD_PARTY_HOME)/expat-2.1.0/lib/libexpat.a
+	$(PCRE_HOME)/lib/libpcre.a	\
+	$(EXPAT_HOME)/lib/libexpat.a
 
 
 ####### Build rules
