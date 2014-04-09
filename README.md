@@ -34,13 +34,15 @@ Openfire Connection Manager 是 Openfire 服务器的扩展，它可以透明的
 编译安装
 -------------------
 ### a.依赖包安装<br />
-需要确保安装了pcre(http://www.pcre.org/),expat(http://www.libexpat.org/)
+需要确保安装了\<br /\>
+pcre(http://www.pcre.org/)\<br /\>
+expat(http://www.libexpat.org/)\<br /\>
 
 ### b.编译安装<br />
-进入cm目录
-修改Makefile中的PCRE_HOME和EXPAT_HOME值,指向正确的安装路径
-运行 make 进行编译
-编译后的目标文件为./objs/nginx
+进入cm目录\<br /\>
+修改Makefile中的PCRE_HOME和EXPAT_HOME值,指向正确的安装路径\<br /\>
+运行 make 进行编译\<br /\>
+编译后的目标文件为./objs/nginx\<br /\>
 
 原理篇
 -------------------
