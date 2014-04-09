@@ -5,7 +5,7 @@ openfire connection manager module
 
 ![connection manager architecture](docs/architecture.png "Architecture")
 
-Openfire Connection Manager 是 Openfire 服务器的扩展，它可以透明的处理大规模并发 XMPP 客户端对 Openfire 服务器的联接。上图表示 Openfire 服务器配置 Connection Manager 后的系统架构。实现参考了Openfire的Connection Manager模块(http://www.igniterealtime.org/projects/openfire/connection_manager.jsp),当前版本尚不支持ssl及zlib压缩。
+Openfire Connection Manager 是 Openfire 服务器的扩展，它可以透明的处理大规模并发 XMPP 客户端对 Openfire 服务器的联接。上图表示 Openfire 服务器配置 Connection Manager 后的系统架构。实现参考了Openfire的Connection Manager模块(http://www.igniterealtime.org/projects/openfire/connection_manager.jsp)，当前版本尚不支持ssl及zlib压缩。
 
 使用配置
 -------------------
