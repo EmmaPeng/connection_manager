@@ -43,6 +43,7 @@ expat(http://www.libexpat.org/)<br />
 ### b.编译安装<br />
 进入cm目录<br />
 修改Makefile中的PCRE_HOME和EXPAT_HOME值,指向正确的安装路径<br />
+如需要取消debug,则修改src/ngx_auto_config.h文件,将NGX_DEBUG定义为0<br />
 运行 make 进行编译<br />
 编译后的目标文件为./objs/nginx<br />
 
